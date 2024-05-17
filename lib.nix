@@ -54,8 +54,8 @@
   }:
   let
     lib = {
-      inherit (git-hooks) lib;
-      inherit (nixdoc-to-github) lib;
+      inherit (git-hooks.lib) git-hooks;
+      inherit (nixdoc-to-github.lib) nixdoc-to-github;
     };
     update-readme = lib.nixdoc-to-github.run {
       description = "Nothing";

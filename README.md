@@ -13,7 +13,7 @@ This is how to do it.
 > ````nix
 > /**
 > A library to do nothing at all
-> */
+> *'/
 > { lib }:
 > {
 >   /**
@@ -27,7 +27,7 @@ This is how to do it.
 >   id x
 >   ```
 >   :::
->   */
+>   *'/
 >   id = lib.id;
 > }
 > ````
@@ -54,8 +54,8 @@ This is how to do it.
 > }:
 > let
 >   lib = {
->     inherit (git-hooks) lib;
->     inherit (nixdoc-to-github) lib;
+>     inherit (git-hooks.lib) git-hooks;
+>     inherit (nixdoc-to-github.lib) nixdoc-to-github;
 >   };
 >   update-readme = lib.nixdoc-to-github.run {
 >     description = "Nothing";
