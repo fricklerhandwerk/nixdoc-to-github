@@ -13,7 +13,7 @@ This is how to do it.
 > ````nix
 > /**
 > A library to do nothing at all
-> *'/
+> */
 > { lib }:
 > {
 >   /**
@@ -27,7 +27,7 @@ This is how to do it.
 >   id x
 >   ```
 >   :::
->   *'/
+>   */
 >   id = lib.id;
 > }
 > ````

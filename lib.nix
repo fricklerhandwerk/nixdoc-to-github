@@ -13,7 +13,7 @@
   ````nix
   /**
   A library to do nothing at all
-  *'/
+  *\/
   { lib }:
   {
     /**
@@ -27,7 +27,7 @@
     id x
     ```
     :::
-    *'/
+    *\/
     id = lib.id;
   }
   ````
@@ -103,6 +103,7 @@
       # Those need to be adapated to GitHub Markdown:
       # - Turn `:::{.example}` blocks into block quotes
       # - Remove section anchors
+      # - Unescape nested block comments
       # - GitHub produces its own anchors, change URL fragments accordingly
       text = ''
         nixdoc --category "${category}" --description "${description}" --file "${file}" | awk '
@@ -123,6 +124,7 @@
         ' | sed 's/[[:space:]]*$//' \
           | sed 's/ {#[^}]*}//g' \
           | sed "s/\`\`\` /\`\`\`/g" \
+          | sed 's#\*\\\/#\*\/#g' \
           | sed 's/function-library-//g' | perl -pe 's/\(#([^)]+)\)/"(#" . $1 =~ s|\.||gr . ")" /eg' \
           > "${output}"
       '';
