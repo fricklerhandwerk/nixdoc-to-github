@@ -75,7 +75,7 @@
   ```
   ::::
 */
-{ writeShellApplication, git, nixdoc, busybox, perl }:
+{ writeShellApplication, git, nixdoc, stdenv, coreutils, busybox, perl }:
 {
   /**
     - `description` (string)
@@ -98,7 +98,11 @@
   run = { description, category, file, output }:
     writeShellApplication {
       name = "nixdoc-to-github";
-      runtimeInputs = [ nixdoc busybox perl ];
+      runtimeInputs =
+        let
+          posix = if stdenv.isDarwin then coreutils else busybox;
+        in
+        [ nixdoc posix perl ];
       # nixdoc makes a few assumptions that are specific to the Nixpkgs manual.
       # Those need to be adapated to GitHub Markdown:
       # - Turn `:::{.example}` blocks into block quotes
