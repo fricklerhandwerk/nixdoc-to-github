@@ -6,7 +6,7 @@
   # but nixdoc upstream does not expose the package recipe...
   # https://github.com/nix-community/nixdoc/pull/125
   nixdoc ? pkgs.callPackage ./nix/nixdoc.nix { inherit sources; },
-  git-hooks ? import sources.git-hooks { inherit pkgs system; },
+  git-hooks ? pkgs.callPackage sources.git-hooks { },
 }:
 let
   update-readme = lib.nixdoc-to-github.run {

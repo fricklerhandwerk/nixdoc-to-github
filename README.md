@@ -49,8 +49,8 @@ This is how to do it.
 >   sources ? import ./npins,
 >   system ? builtins.currentSystem,
 >   pkgs ? import sources.nixpkgs { inherit system; config = { }; overlays = [ ]; },
->   nixdoc-to-github ? import sources.nixdoc-to-github { inherit pkgs system; },
->   git-hooks ? import sources.git-hooks { inherit pkgs system; },
+>   nixdoc-to-github ? pkgs.callpackage sources.nixdoc-to-github { },
+>   git-hooks ? pkgs.callPackage sources.git-hooks { },
 > }:
 > let
 >   lib = {
